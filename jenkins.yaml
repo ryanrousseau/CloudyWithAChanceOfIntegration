@@ -1,0 +1,65 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: '0.0.0.0/0'
+      - IpProtocol: tcp
+        FromPort: '80'
+        ToPort: '80'
+        CidrIp: '0.0.0.0/0'
+      - IpProtocol: tcp
+        FromPort: '443'
+        ToPort: '443'
+        CidrIp: '0.0.0.0/0'
+  Jenkins:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: ami-0212d46f
+      InstanceType: m3.medium
+      KeyName: DukeLegion
+      SecurityGroups:
+        - Ref: InstanceSecurityGroup
+      Tags:
+        -
+          Key: Appplication
+          Value: Jenkins
+        -
+          Key: Domain
+          Value: None
+        -
+          Key: Environment
+          Value: Test
+        -
+          Key: LifeTime
+          Value: Transient
+        -
+          Key: Name
+          Value: Jenkins
+        -
+          Key: OS
+          Value: Linux
+        -
+          Key: OwnerContact
+          Value: "#{Contact}"
+        -
+          Key: Purpose
+          Value: Support Test Instance
+        -
+          Key: Source
+          Value: CloudForation Script in Octopus Deploy
+        -
+          Key: scheduler:ec2-startstop
+          Value: true
+Outputs:
+  PublicIp:
+    Value:
+      Fn::GetAtt:
+      - Jenkins
+      - PublicIp
+    Description: Server's PublicIp Address

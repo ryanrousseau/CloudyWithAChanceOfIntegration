@@ -1,0 +1,78 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: '22'
+        ToPort: '22'
+        CidrIp: '0.0.0.0/0'
+      - IpProtocol: tcp
+        FromPort: '80'
+        ToPort: '80'
+        CidrIp: '0.0.0.0/0'
+      - IpProtocol: tcp
+        FromPort: '443'
+        ToPort: '443'
+        CidrIp: '0.0.0.0/0'
+  WildFly:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: ami-5069332a
+      InstanceType: m3.medium
+      KeyName: DukeLegion
+      SecurityGroups:
+        - Ref: InstanceSecurityGroup
+      Tags:
+        -
+          Key: Appplication
+          Value: WildFly
+        -
+          Key: Domain
+          Value: None
+        -
+          Key: Environment
+          Value: Test
+        -
+          Key: LifeTime
+          Value: Transient
+        -
+          Key: Name
+          Value: WildFly
+        -
+          Key: OS
+          Value: Linux
+        -
+          Key: OwnerContact
+          Value: "#{Contact}"
+        -
+          Key: Purpose
+          Value: Support Test Instance
+        -
+          Key: Source
+          Value: CloudForation Script in Octopus Deploy
+        -
+          Key: scheduler:ec2-startstop
+          Value: true
+      UserData:
+        Fn::Base64: |
+          #cloud-boothook
+          #!/bin/bash
+          echo "Starting" > /tmp/cloudhook
+          sudo apt-get --assume-yes update
+          sudo apt-get --assume-yes install curl libunwind8 gettext apt-transport-https jq
+          getent group deployment || sudo groupadd deployment
+          sudo usermod -a -G deployment wildfly
+          sudo usermod -a -G deployment bitnami
+          echo "Editing permissions" >> /tmp/cloudhook
+          sudo chgrp deployment /opt/bitnami/wildfly/standalone/tmp/auth
+          sudo chmod 775 /opt/bitnami/wildfly/standalone/tmp/auth
+Outputs:
+  PublicIp:
+    Value:
+      Fn::GetAtt:
+      - WildFly
+      - PublicIp
+    Description: Server's PublicIp Address
