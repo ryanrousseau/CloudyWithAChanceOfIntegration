@@ -58,7 +58,7 @@ Parameters:
       - cr1.8xlarge
       - cc2.8xlarge
       - cg1.4xlarge
-    Description: Enter t2.micro, m1.small, or m1.large. Default is t2.micro.
+    Description: Enter instance size. Default is m3.medium.
 Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
