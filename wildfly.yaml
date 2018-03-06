@@ -82,7 +82,7 @@ Resources:
     Properties:
       ImageId: ami-5069332a
       InstanceType:
-        - Ref: InstanceTypeParameter
+        Ref: InstanceTypeParameter
       KeyName: DukeLegion
       SecurityGroups:
         - Ref: InstanceSecurityGroup
