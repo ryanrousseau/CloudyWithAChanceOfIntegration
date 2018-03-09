@@ -77,12 +77,12 @@ Resources:
             Service:
             - ec2.amazonaws.com
           Action: sts:AssumeRole
-      Policies:
-        - AmazonEC2FullAccess
-        - AmazonRoute53FullAccess
-        - AmazonS3FullAccess
-        - IAMFullAccess
-        - AmazonVPCFullAccess
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+        - "arn:aws:iam::aws:policy/AmazonRoute53FullAccess"
+        - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+        - "arn:aws:iam::aws:policy/IAMFullAccess"
+        - "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
   KopsInstanceProfile:
     Type: "AWS::IAM::InstanceProfile"
     Properties:
