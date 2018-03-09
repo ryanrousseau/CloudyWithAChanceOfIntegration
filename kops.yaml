@@ -2,7 +2,10 @@ AWSTemplateFormatVersion: "2010-09-09"
 Parameters:
   DomainName:
     Type: String
-    Default: octopus1.k8s
+    Default: octopus.k8s
+  BucketName:
+    Type: String
+    Default: octopus.k8s
 Resources:
   VPC:
     Type: AWS::EC2::VPC
@@ -71,3 +74,17 @@ Resources:
         Comment: !Join
           - " "
           - ["My hosted zone for", !Ref DomainName]
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Ref BucketName
+Outputs:
+  BucketUrl:
+    Value:
+      Fn::GetAtt:
+      - S3Bucket
+      - WebsiteURL
+    Description: S3 Bucket URL
+  VPCID:
+    Value: !Ref VPC
+    Description: VPC ID
