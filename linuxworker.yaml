@@ -66,6 +66,28 @@ Parameters:
       - cg1.4xlarge
     Description: Enter instance size. Default is t2.small.
 Resources:
+  KopsRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - ec2.amazonaws.com
+          Action: sts:AssumeRole
+      Policies:
+        - AmazonEC2FullAccess
+        - AmazonRoute53FullAccess
+        - AmazonS3FullAccess
+        - IAMFullAccess
+        - AmazonVPCFullAccess
+  KopsInstanceProfile:
+    Type: "AWS::IAM::InstanceProfile"
+    Properties:
+      Roles:
+        - !Ref KopsRole
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -90,9 +112,11 @@ Resources:
       ImageId: ami-97785bed
       SubnetId: !Ref SubnetID
       InstanceType:
-        Ref: InstanceTypeParameter
+        Ref: KopsInstanceProfile
       SecurityGroupIds:
         - Ref: InstanceSecurityGroup
+      IamInstanceProfile:
+        Ref: KopsInstanceProfile
       KeyName: DukeLegion
       Tags:
         -
