@@ -132,7 +132,7 @@ Resources:
             - |
               #!/bin/bash
               echo "Starting" > /tmp/cloudhook
-              sudo yum install libunwind libicu jq
+              sudo yum install -y libunwind libicu jq
               sudo wget https://github.com/kubernetes/kops/releases/download/1.9.0-alpha.1/kops-linux-amd64 -O /opt/kops
               sudo chmod +x /opt/kops
               sudo cd /opt
