@@ -124,6 +124,9 @@ Resources:
           sudo yum install libunwind libicu jq
           sudo wget https://github.com/kubernetes/kops/releases/download/1.9.0-alpha.1/kops-linux-amd64 -O /opt/kops
           sudo chmod +x /opt/kops
+          sudo cd /opt
+          sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+          sudo cmod +x kubectl
   WebElasticIp:
       Type: AWS::EC2::EIP
       Properties:
