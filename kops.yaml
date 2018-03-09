@@ -88,3 +88,6 @@ Outputs:
   VPCID:
     Value: !Ref VPC
     Description: VPC ID
+  SubnetAID:
+    Value: !Ref SubnetA
+    Description: Subnet A ID

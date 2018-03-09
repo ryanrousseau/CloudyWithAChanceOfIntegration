@@ -1,8 +1,10 @@
 AWSTemplateFormatVersion: 2010-09-09
 Parameters:
+  SubnetID:
+    Type: String
   InstanceTypeParameter:
     Type: String
-    Default: m3.medium
+    Default: t2.small
     AllowedValues:
       - t1.micro
       - t2.nano
@@ -81,11 +83,10 @@ Resources:
     Type: 'AWS::EC2::Instance'
     Properties:
       ImageId: ami-97785bed
+      SubnetId: !Ref SubnetID
       InstanceType:
         Ref: InstanceTypeParameter
       KeyName: DukeLegion
-      SecurityGroups:
-        - Ref: InstanceSecurityGroup
       Tags:
         -
           Key: Appplication
@@ -129,8 +130,11 @@ Resources:
           sudo cmod +x kubectl
   WebElasticIp:
       Type: AWS::EC2::EIP
-      Properties:
-        InstanceId: !Ref Worker
+  IPAssoc:
+    Type: AWS::EC2::EIPAssociation
+    Properties:
+      InstanceId: !Ref Worker
+      EIP: !Ref WebElasticIp
 Outputs:
   PublicIp:
     Value:
