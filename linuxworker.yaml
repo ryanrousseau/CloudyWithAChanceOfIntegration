@@ -112,7 +112,7 @@ Resources:
       ImageId: ami-97785bed
       SubnetId: !Ref SubnetID
       InstanceType:
-        Ref: KopsInstanceProfile
+        Ref: InstanceTypeParameter
       SecurityGroupIds:
         - Ref: InstanceSecurityGroup
       IamInstanceProfile:
