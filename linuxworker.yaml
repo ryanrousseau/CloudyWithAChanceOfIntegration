@@ -130,11 +130,9 @@ Resources:
           sudo cmod +x kubectl
   WebElasticIp:
       Type: AWS::EC2::EIP
-  IPAssoc:
-    Type: AWS::EC2::EIPAssociation
-    Properties:
-      InstanceId: !Ref Worker
-      EIP: !Ref WebElasticIp
+      Properties:
+        Domain: vpc
+        InstanceId: !Ref Worker
 Outputs:
   PublicIp:
     Value:
