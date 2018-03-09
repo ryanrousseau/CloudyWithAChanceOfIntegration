@@ -2,6 +2,8 @@ AWSTemplateFormatVersion: 2010-09-09
 Parameters:
   SubnetID:
     Type: String
+  VPCID:
+    Type: String
   S3URL:
       Type: String
   InstanceTypeParameter:
@@ -62,12 +64,13 @@ Parameters:
       - cr1.8xlarge
       - cc2.8xlarge
       - cg1.4xlarge
-    Description: Enter instance size. Default is m3.medium.
+    Description: Enter instance size. Default is t2.small.
 Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Enable SSH access via port 22
+      VpcId: !Ref VPCID
       SecurityGroupIngress:
       - IpProtocol: tcp
         FromPort: '22'
@@ -88,7 +91,7 @@ Resources:
       SubnetId: !Ref SubnetID
       InstanceType:
         Ref: InstanceTypeParameter
-      SecurityGroups:
+      SecurityGroupIds:
         - Ref: InstanceSecurityGroup
       KeyName: DukeLegion
       Tags:
