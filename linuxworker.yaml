@@ -88,6 +88,8 @@ Resources:
       SubnetId: !Ref SubnetID
       InstanceType:
         Ref: InstanceTypeParameter
+      SecurityGroups:
+        - Ref: InstanceSecurityGroup
       KeyName: DukeLegion
       Tags:
         -
