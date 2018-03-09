@@ -14,10 +14,10 @@ Resources:
       EnableDnsSupport: true
       EnableDnsHostnames: true
       InstanceTenancy: default
-    Tags:
-      -
-        Key: Name
-        Value: Kubernetes VPC
+      Tags:
+        -
+          Key: Name
+          Value: Kubernetes VPC
   InternetGateway:
     Type: AWS::EC2::InternetGateway
   VPCGatewayAttachment:
