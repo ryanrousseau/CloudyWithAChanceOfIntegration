@@ -153,7 +153,7 @@ Resources:
         Fn::Base64: !Join
           - ''
           -
-            - |
+            - |-
               #!/bin/bash
               echo "Starting" > /tmp/cloudhook
               sudo yum install -y libunwind libicu jq
