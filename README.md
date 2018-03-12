@@ -14,7 +14,7 @@ Write-Host "kops create secret --name $($OctopusParameters["Octopus.Action[Kuber
 Write-Host "kops update cluster $($OctopusParameters["Octopus.Action[Kubernetes Infrastructure].Output.AwsOutputs[DomainName]"]) --yes"
 Write-Host "kops delete cluster $($OctopusParameters["Octopus.Action[Kubernetes Infrastructure].Output.AwsOutputs[DomainName]"]) --yes"
 Write-Host "kubectl run echo-node --image=tutum/hello-world --port=80"
-Write-Host "kubectl expose echo-node --type=NodePort"
+Write-Host "kubectl expose deployment echo-node --type=NodePort"
 Write-Host "kubectl describe service echo-node"
 Write-Host "You will also want to open ports 30000-32767 in the security group"
 ```
