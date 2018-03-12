@@ -66,10 +66,6 @@ Resources:
     Type: "AWS::Route53::HostedZone"
     Properties:
       Name: !Ref DomainName
-      VPCs:
-        -
-          VPCId: !Ref VPC
-          VPCRegion: us-east-1
       HostedZoneConfig:
         Comment: !Join
           - " "
@@ -91,3 +87,6 @@ Outputs:
   SubnetAID:
     Value: !Ref SubnetA
     Description: Subnet A ID
+  NameServers:
+    Value: !Join [' ', !GetAtt DNS.NameServers ]
+    Description: Route 53 Name Servers
