@@ -94,9 +94,6 @@ Outputs:
   SubnetAID:
     Value: !Ref SubnetA
     Description: Subnet A ID
-  NameServers:
-    Value: !Join [' ', !GetAtt DNS.NameServers ]
-    Description: Route 53 Name Servers
   DomainName:
     Value: !Ref DomainName
     Description: Domain Name
