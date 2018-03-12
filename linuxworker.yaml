@@ -187,7 +187,7 @@ Resources:
               sudo ifdown eth0
               sudo ifup eth0
               # Create a SSH keypair
-              if [ !f /home/ec2-user/id_rsa ]; then
+              if [ ! -f /home/ec2-user/id_rsa ]; then
                 ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
               fi
   WebElasticIp:
