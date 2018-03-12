@@ -6,8 +6,6 @@ Parameters:
     Type: String
   S3URL:
       Type: String
-  NameServers:
-      Type: String
   Domain:
       Type: String
   InstanceTypeParameter:
