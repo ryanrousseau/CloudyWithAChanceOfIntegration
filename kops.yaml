@@ -93,3 +93,6 @@ Outputs:
   NameServers:
     Value: !Join [' ', !GetAtt DNS.NameServers ]
     Description: Route 53 Name Servers
+  DomainName:
+    Value: !Ref DomainName
+    Description: Domain Name

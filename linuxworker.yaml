@@ -8,6 +8,8 @@ Parameters:
       Type: String
   NameServers:
       Type: String
+  Domain:
+      Type: String
   InstanceTypeParameter:
     Type: String
     Default: t2.small
@@ -167,6 +169,10 @@ Resources:
             - !Ref S3URL
             - |-
               " | sudo tee --append /etc/environment
+              sudo echo "DOMAIN=
+            - !Ref Domain
+            - |-
+              " | sudo tee --append /etc/sysconfig/network-scripts/ifcfg-eth0
               sudo echo "DNS1=8.8.8.8" | sudo tee --append /etc/sysconfig/network-scripts/ifcfg-eth0
               sudo echo "DNS2=
             - !Select [0, !Split [" ", !Ref NameServers]]
