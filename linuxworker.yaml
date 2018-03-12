@@ -174,22 +174,6 @@ Resources:
             - !Ref S3URL
             - |-
               " | sudo tee --append /etc/environment
-              # Set the DNS search domain to the domain setup in Route 53
-              sudo echo "DOMAIN=
-            - !Ref Domain
-            - |-
-              " | sudo tee --append /etc/sysconfig/network-scripts/ifcfg-eth0
-              # Configure the google and route 53 nameservers
-              sudo echo "DNS2=8.8.8.8" | sudo tee --append /etc/sysconfig/network-scripts/ifcfg-eth0
-              NameServerIP=$(dig +short
-            - " "
-            - !Select [0, !Split [" ", !Ref NameServers]]
-            - |-
-              )
-              sudo echo "DNS1=$NameServerIP" | sudo tee --append /etc/sysconfig/network-scripts/ifcfg-eth0
-              # Rebuild /etc/resolv.conf
-              sudo ifdown eth0
-              sudo ifup eth0
               # Create a SSH keypair
               if [ ! -f /home/ec2-user/id_rsa ]; then
                 ssh-keygen -t rsa -N "" -f /home/ec2-user/.ssh/id_rsa

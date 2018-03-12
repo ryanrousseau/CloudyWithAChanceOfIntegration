@@ -66,6 +66,10 @@ Resources:
     Type: "AWS::Route53::HostedZone"
     Properties:
       Name: !Ref DomainName
+      VPCs:
+        -
+          VPCId: !Ref VPC
+          VPCRegion: us-east-1
       HostedZoneConfig:
         Comment: !Join
           - " "
