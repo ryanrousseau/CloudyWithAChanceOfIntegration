@@ -16,5 +16,6 @@ Write-Host "kubectl run echo-node --image=tutum/hello-world --port=80"
 Write-Host "kubectl expose deployment echo-node --type=NodePort"
 Write-Host "kubectl describe service echo-node"
 Write-Host "kubectl expose deployment echo-node --target-port=80 --name=echo-node --type=LoadBalancer"
+Write-Host "kubectl run -i --tty busybox --image=busybox --restart=Never -- sh"
 Write-Host "You will also want to open ports 30000-32767 in the security group"
 ```

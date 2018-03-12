@@ -226,7 +226,8 @@ Resources:
           -
             - |-
               #!/bin/bash
-              sudo yum install -y libunwind libicu jq docker
+              sudo yum-config-manager --enable epel
+              sudo yum install -y libunwind libicu jq docker bash-completion
               sudo service docker start
               sudo usermod -a -G docker ec2-user
               sudo wget https://github.com/kubernetes/kops/releases/download/1.9.0-alpha.1/kops-linux-amd64 -O /opt/kops
@@ -234,6 +235,7 @@ Resources:
               cd /opt
               sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
               sudo chmod +x kubectl
+              kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl
               # Add /opt to the path
               echo "PATH=$PATH:/opt" | sudo tee --append /etc/environment
               # Update /etc/environment with the location in S3 where kops will save its state
