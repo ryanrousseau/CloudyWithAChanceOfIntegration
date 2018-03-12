@@ -177,7 +177,8 @@ Resources:
               NameServerIP=$(dig +short
             - " "
             - !Select [0, !Split [" ", !Ref NameServers]]
-            - )
+            - |-
+              )
               sudo echo "DNS2=$NameServerIP" | sudo tee --append /etc/sysconfig/network-scripts/ifcfg-eth0
               sudo ifdown eth0
               sudo ifup eth0
