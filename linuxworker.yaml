@@ -190,7 +190,7 @@ Resources:
               sudo ifup eth0
               # Create a SSH keypair
               if [ ! -f /home/ec2-user/id_rsa ]; then
-                ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+                ssh-keygen -t rsa -N "" -f /home/ec2-user/.ssh/id_rsa
               fi
   WebElasticIp:
       Type: AWS::EC2::EIP
