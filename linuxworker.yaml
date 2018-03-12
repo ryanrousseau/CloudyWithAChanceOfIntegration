@@ -163,15 +163,17 @@ Resources:
               sudo chmod +x /opt/kops
               sudo cd /opt
               sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-              sudo cmod +x kubectl
+              sudo chmod +x kubectl
               sudo echo "KOPS_STATE_STORE=
             - !Ref S3URL
             - |-
-              '" >> /etc/environment'
-              sudo echo "" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+              " | sudo tee --append /etc/environment
               sudo echo "DNS1=
             - !Select [0, !Split [" ", !Ref NameServers]]
-            - '" >> /etc/sysconfig/network-scripts/ifcfg-eth0'
+            - |-
+              '" | sudo tee --append /etc/sysconfig/network-scripts/ifcfg-eth0'
+              sudo ifdown eth0
+              sudo ifup eth0
   WebElasticIp:
       Type: AWS::EC2::EIP
       Properties:
