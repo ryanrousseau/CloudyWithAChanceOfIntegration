@@ -157,7 +157,6 @@ Resources:
           -
             - |-
               #!/bin/bash
-              echo "Starting" > /tmp/cloudhook
               sudo yum install -y libunwind libicu jq
               sudo wget https://github.com/kubernetes/kops/releases/download/1.9.0-alpha.1/kops-linux-amd64 -O /opt/kops
               sudo chmod +x /opt/kops
@@ -168,10 +167,11 @@ Resources:
             - !Ref S3URL
             - |-
               " | sudo tee --append /etc/environment
-              sudo echo "DNS1=
+              sudo echo "DNS1=8.8.8.8" | sudo tee --append /etc/sysconfig/network-scripts/ifcfg-eth0
+              sudo echo "DNS2=
             - !Select [0, !Split [" ", !Ref NameServers]]
             - |-
-              '" | sudo tee --append /etc/sysconfig/network-scripts/ifcfg-eth0'
+              " | sudo tee --append /etc/sysconfig/network-scripts/ifcfg-eth0
               sudo ifdown eth0
               sudo ifup eth0
   WebElasticIp:
