@@ -1,0 +1,10 @@
+[
+  {
+    "ParameterKey": "DomainName",
+    "ParameterValue": "octopus.k8sdemo"
+  },
+  {
+    "ParameterKey": "BucketName",
+    "ParameterValue": "octopus.k8sdemo"
+  }
+]
