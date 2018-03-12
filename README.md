@@ -12,5 +12,7 @@ Write-Host "kops create cluster --dns private --zones=us-east-1c $($OctopusParam
 Write-Host "kops create secret --name $($OctopusParameters["Octopus.Action[Kubernetes Infrastructure].Output.AwsOutputs[DomainName]"]) sshpublickey admin -i ~/.ssh/id_rsa.pub"
 Write-Host "kops update cluster $($OctopusParameters["Octopus.Action[Kubernetes Infrastructure].Output.AwsOutputs[DomainName]"]) --yes"
 Write-Host "kops delete cluster $($OctopusParameters["Octopus.Action[Kubernetes Infrastructure].Output.AwsOutputs[DomainName]"]) --yes"
-Write-Host "kubectl run echo-node --image=tutum/hello-world --port=8080"
+Write-Host "kubectl run echo-node --image=tutum/hello-world --port=80"
+Write-Host "kubectl expose echo-node --type=NodePort"
+Write-Host "kubectl describe service echo-node"
 ```
