@@ -81,6 +81,9 @@ Outputs:
       - S3Bucket
       - WebsiteURL
     Description: S3 Bucket URL
+  S3Bucket:
+    Value: !Ref S3Bucket
+    Description: S3 Bucket Name
   VPCID:
     Value: !Ref VPC
     Description: VPC ID
