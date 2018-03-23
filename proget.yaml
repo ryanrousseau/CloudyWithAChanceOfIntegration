@@ -59,6 +59,10 @@ Parameters:
       - cc2.8xlarge
       - cg1.4xlarge
     Description: Enter instance size. Default is m3.medium.
+  AMI:
+    Type: String
+    Default: ami-1853ac65
+    Description: AMI Image
 Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -80,7 +84,7 @@ Resources:
   WildFly:
     Type: 'AWS::EC2::Instance'
     Properties:
-      ImageId: ami-1853ac65
+      ImageId: !Ref AMI
       InstanceType:
         Ref: InstanceTypeParameter
       KeyName: DukeLegion
