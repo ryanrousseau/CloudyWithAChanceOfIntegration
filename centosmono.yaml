@@ -61,7 +61,7 @@ Parameters:
     Description: Enter instance size. Default is m3.medium.
   AMI:
     Type: String
-    Default: ami-65e0e305
+    Default: ami-4bf3d731
     Description: AMI Image
 Resources:
   InstanceSecurityGroup:
