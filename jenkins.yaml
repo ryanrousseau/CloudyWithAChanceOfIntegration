@@ -107,7 +107,7 @@ Resources:
           Value: Linux
         -
           Key: OwnerContact
-          Value: "#{Contact}"
+          Value: "#{Deployer Contact}"
         -
           Key: Purpose
           Value: Support Test Instance
