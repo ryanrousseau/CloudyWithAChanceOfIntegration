@@ -67,11 +67,15 @@ Resources:
   InstanceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Enable RDP via port
+      GroupDescription: Open RDP, HTTP and Octopus listening tentacles
       SecurityGroupIngress:
       - IpProtocol: tcp
         FromPort: '3389'
         ToPort: '3389'
+        CidrIp: '0.0.0.0/0'
+      - IpProtocol: tcp
+        FromPort: '10933'
+        ToPort: '10933'
         CidrIp: '0.0.0.0/0'
       - IpProtocol: tcp
         FromPort: '80'
