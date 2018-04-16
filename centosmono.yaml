@@ -129,7 +129,7 @@ Resources:
           sudo su -c 'curl https://download.mono-project.com/repo/centos7-stable.repo | tee /etc/yum.repos.d/mono-centos7-stable.repo'
           sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
           sudo sh -c 'echo -e "[packages-microsoft-com-prod]\nname=packages-microsoft-com-prod \nbaseurl=https://packages.microsoft.com/yumrepos/microsoft-rhel7.3-prod\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/dotnetdev.repo'
-          sudo yum install mono-devel libunwind libicu dotnet-sdk-2.0.0 -y
+          sudo yum install mono-devel libunwind libicu dotnet-sdk-2.0.0 java-1.8.0-openjdk -y
 Outputs:
   PublicIp:
     Value:
