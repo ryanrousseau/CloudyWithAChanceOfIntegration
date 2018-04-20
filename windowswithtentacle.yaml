@@ -114,6 +114,10 @@ Resources:
         FromPort: '3389'
         ToPort: '3389'
         CidrIp: '0.0.0.0/0'
+      - IpProtocol: tcp
+        FromPort: '10933'
+        ToPort: '10933'
+        CidrIp: '0.0.0.0/0'
   Instance:
     Type: 'AWS::EC2::Instance'
     Properties:
