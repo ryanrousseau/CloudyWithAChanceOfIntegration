@@ -81,7 +81,7 @@ Resources:
         FromPort: '443'
         ToPort: '443'
         CidrIp: '0.0.0.0/0'
-  WildFly:
+  Proget:
     Type: 'AWS::EC2::Instance'
     Properties:
       ImageId: !Ref AMI
@@ -136,6 +136,6 @@ Outputs:
   PublicIp:
     Value:
       Fn::GetAtt:
-      - WildFly
+      - Proget
       - PublicIp
     Description: Server's PublicIp Address
